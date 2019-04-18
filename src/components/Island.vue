@@ -1,5 +1,5 @@
 <template>
-  <path @mouseover="$emit('hover')" @mouseleave="$emit('leave')" :style="isHover ? hoverStyle : {}" :fill="fill" :d="path"/>
+  <path @mouseover="$emit('hover')" @mouseleave="$emit('leave')" :style="pathStyle" :fill="fill" :d="path"/>
 </template>
 
 <script>
@@ -33,6 +33,12 @@ export default {
         cursor: "pointer"
       }
     };
+  },
+  computed: {
+    pathStyle() {
+      if (this.isHover) return this.hoverStyle;
+      return { fill: `${this.fill} !important` }
+    }
   }
 }
 </script>
