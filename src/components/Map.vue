@@ -37,42 +37,24 @@ export default {
   data() {
     return {
       panZoomInstance: null,
-      panX: null,
-      panY: null,
-      zoom: null
+      initPan: null,
+      initZoom: null
     };
   },
   computed: {
     ...mapState(['masterData', 'outlierData'])
   },
   mounted() {
-    this.panZoomInstance = svgPanZoom('#svg-map', {
-      onPan: (event) => {
-        if (!this.panX) {
-          if (this.zoom) this.panX = event.x/this.zoom;
-          else this.panX = event.x
-        }
-        if (!this.panY) {
-          if (this.zoom) this.panY = event.y/this.zoom;
-          else this.panY = event.y
-        }
-      },
-      onZoom: (event) => {
-        this.zoom = event;
-        console.log(this.zoom)
-      },
-      mouseWheelZoomEnabled: false,
-      dblClickZoomEnabled: false,
-      maxZoom: 5
-    })
+    this.panZoomInstance = svgPanZoom('#svg-map');
     this.panZoomInstance.setMinZoom(1.8);
     this.panZoomInstance.zoom(1.8);
-    this.zoom = null;
+    this.initPan = this.panZoomInstance.getPan();
+    this.initZoom = this.panZoomInstance.getZoom();
   },
   methods: {
     reset() {
-      this.panZoomInstance.resetZoom();
-      if (this.panX && this.panY) this.panZoomInstance.pan({x: this.panX, y: this.panY});
+      this.panZoomInstance.zoom(this.initZoom);
+      this.panZoomInstance.pan(this.initPan);
     },
     colorByValue(value) {
       if (this.index !== -1) {
@@ -122,6 +104,7 @@ svg:active {
   display: inline-block;
   margin-right: 5px;
   border-radius: 10%;
+  background-color: white;
 }
 .controller-icon:hover {
   cursor: pointer;
