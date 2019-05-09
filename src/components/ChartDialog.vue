@@ -3,7 +3,7 @@
     <v-dialog v-model="shown" width="700">
       <v-card>
         <v-card-title class="headline grey lighten-2">
-          <span primary-title>Tren Persentase Kemiskinan</span>
+          <span primary-title>Tren Persentase Kemiskinan (%)</span>
           <v-spacer></v-spacer>
           <v-btn slot="activator" @click="shown = false" icon>
             <v-icon color="white">close</v-icon>
@@ -13,6 +13,7 @@
           :title="title"
           :labels="labels"
           :data="data"
+          :selectedIndex="selectedIndex"
           :key="shown"/>
         <v-divider></v-divider>
       </v-card>
@@ -40,6 +41,10 @@ export default {
     data: {
       type: Array,
       default: () => []
+    },
+    selectedIndex: {
+      type: Number,
+      required: true
     }
   },
   data() {

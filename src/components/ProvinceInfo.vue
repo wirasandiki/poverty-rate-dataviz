@@ -4,7 +4,7 @@
       <span class=title-info>{{ title }}</span>
     </div>
     <div>
-      <span>{{ content }} %</span>
+      <b><span>{{ content }} %</span></b>
     </div>
   </div>
 </template>
@@ -47,18 +47,19 @@ export default {
 </script>
 <style lang="scss" scoped>
 $primary: #851400;
-
+$secondary: #FFBF00;
 .info-box {
   display: block;
   position: absolute;
   top: 0px;
   left: 0px;
   z-index: 1;
-  background-color: #ffffff;
-  border: 2px solid #BF0A30;
+  background-color: $primary;
+  border-left: 2px solid $secondary;
+  border-bottom: 2px solid $secondary;
   border-radius: 2px;
   padding: 6px;
-  color: $primary;
+  color: white;
 }
 .title-info {
   font-size: 18px;

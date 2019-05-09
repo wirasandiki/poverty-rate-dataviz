@@ -5,7 +5,8 @@
         <h2>Provinsi {{title}}</h2>
         <LineChart
           :labels="labels"
-          :data="data" />
+          :data="data"
+          :selectedIndex="selectedIndex" />
       </div>
     </div>
   </div>
@@ -21,13 +22,14 @@ export default {
   props: {
     title: String,
     labels: Array,
-    data: Array
+    data: Array,
+    selectedIndex: Number
   },
 };
 </script>
 
 <style scoped>
 .chart {
-  margin: 10px 
+  margin: 40px !important;
 }
 </style>

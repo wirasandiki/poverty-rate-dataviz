@@ -15,7 +15,7 @@
       <img @click="reset" class="controller-icon" src="./../assets/reset.png">
     </div>
     <ProvinceInfo v-if="showProvinceInfo" :title="provinceInfoTitle" :content="provinceInfoContent" :xPos="provinceInfoXPos" :yPos="provinceInfoYPos" ref="provinceInfo"/>
-    <ChartDialog :show="isShowDialog" :title="provinceInfoTitle" :data="chartData" @close="isShowDialog = false"/>
+    <ChartDialog :show="isShowDialog" :title="provinceInfoTitle" :data="chartData" :selectedIndex="index" @close="isShowDialog = false"/>
   </div>
 </template>
 
