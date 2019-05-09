@@ -1,5 +1,5 @@
 <template>
-  <path @mouseover="$emit('hover')" @mouseleave="$emit('leave')" :style="pathStyle" :fill="fill" :d="path"/>
+  <path @mouseover="$emit('hover')" @mousemove="$emit('move', $event)" @mouseleave="$emit('leave')" :style="pathStyle" :fill="fill" :d="path"/>
 </template>
 
 <script>

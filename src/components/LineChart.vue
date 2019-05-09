@@ -13,8 +13,8 @@ export default {
         labels:this.labels,
         datasets: [
           {
-            label: "Data One",
-            borderColor: "red",
+            label: "Persentase kemiskinan",
+            borderColor: "#851400",
             fill: false,
             lineTension : 0,
             borderWidth: 1,

@@ -1,6 +1,6 @@
 <template>
   <g :id="province">
-    <Island v-for="path in paths" :key="path.id" :province="province" :fill="fill" :isHover="isHover" :path="path" @hover="isHover = true && isHoverable" @leave="isHover = false" />
+    <Island v-for="path in paths" :key="path.id" :province="province" :fill="fill" :isHover="isHover" :path="path" @hover="isHover = true && isHoverable" @leave="isHover = false" @move="$emit('move', $event)"/>
   </g>
 </template>
 
@@ -34,6 +34,12 @@ export default {
     return {
       isHover: false
     };
+  },
+  watch: {
+    isHover(val) {
+      if (val) this.$emit('hover');
+      else this.$emit('leave');
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="maps">
     <svg id="svg-map" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="297mm" height="210mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 29700 21000" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <Province v-for="data in masterData" :key="data.id" :fill="colorByValue(data.value[index])" :province="data.name" :paths="data.paths" />
+      <Province v-for="data in masterData" :key="data.id" :fill="colorByValue(data.value[index])" :province="data.name" :paths="data.paths" @hover="hoverProvince(data.fullname, data.value[index], data.value)" @leave="leaveProvince" @move="mouseMove($event)" @click.native="openDialog"/>
       <Province :fill="outlierData.fill" :province="outlierData.name" :paths="outlierData.paths" :isHoverable="false"/>
     </svg>
     <div class="controller-bg">
@@ -14,11 +14,15 @@
       <img @click="panZoomInstance.zoomOut()" class="controller-icon" src="./../assets/minus.png">
       <img @click="reset" class="controller-icon" src="./../assets/reset.png">
     </div>
+    <ProvinceInfo v-if="showProvinceInfo" :title="provinceInfoTitle" :content="provinceInfoContent" :xPos="provinceInfoXPos" :yPos="provinceInfoYPos" ref="provinceInfo"/>
+    <ChartDialog :show="isShowDialog" :title="provinceInfoTitle" :data="chartData" @close="isShowDialog = false"/>
   </div>
 </template>
 
 <script>
 import Province from './Province.vue'
+import ProvinceInfo from './ProvinceInfo.vue'
+import ChartDialog from './ChartDialog.vue'
 import { mapState } from 'vuex'
 
 import svgPanZoom from 'svg-pan-zoom'
@@ -26,7 +30,9 @@ import svgPanZoom from 'svg-pan-zoom'
 export default {
   name: 'maps',
   components: {
-    Province
+    Province,
+    ProvinceInfo,
+    ChartDialog
   },
   props: {
     index: {
@@ -38,7 +44,14 @@ export default {
     return {
       panZoomInstance: null,
       initPan: null,
-      initZoom: null
+      initZoom: null,
+      provinceInfoTitle: '',
+      provinceInfoContent: '',
+      showProvinceInfo: false,
+      provinceInfoXPos: 0,
+      provinceInfoYPos: 0,
+      isShowDialog: false,
+      chartData: []
     };
   },
   computed: {
@@ -75,6 +88,22 @@ export default {
         }
       }
       return '#FFF'
+    },
+    hoverProvince(province, value, data) {
+      this.provinceInfoTitle = province;
+      this.provinceInfoContent = value.toString();
+      this.showProvinceInfo = true;
+      this.chartData = data;
+    },
+    leaveProvince() {
+      this.showProvinceInfo = false;
+    },
+    mouseMove(mouseEventObj) {
+      this.provinceInfoYPos = mouseEventObj.layerY - 60;
+      this.provinceInfoXPos = mouseEventObj.layerX;
+    },
+    openDialog() {
+      this.isShowDialog = true;
     }
   }
 }

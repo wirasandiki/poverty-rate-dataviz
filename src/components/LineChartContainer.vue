@@ -1,9 +1,9 @@
 <template>
   <div class="text-xs-center">
-    <div class="Chart__list">
-      <div class="Chart">
-        <h2>{{title}}</h2>
-        <line-example 
+    <div>
+      <div class="chart">
+        <h2>Provinsi {{title}}</h2>
+        <LineChart
           :labels="labels"
           :data="data" />
       </div>
@@ -12,11 +12,11 @@
 </template>
 
 <script>
-import LineExample from "./LineChart.js";
+import LineChart from "./LineChart.vue";
 export default {
   name: "LineChartContainer",
   components: {
-    LineExample
+    LineChart
   },
   props: {
     title: String,
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-.Chart {
+.chart {
   margin: 10px 
 }
 </style>
