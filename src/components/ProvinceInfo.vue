@@ -53,8 +53,9 @@ $secondary: #FFBF00;
   border-left: 2px solid $secondary;
   border-bottom: 2px solid $secondary;
   border-radius: 2px;
-  padding: 6px;
+  padding: 10px;
   color: white;
+  max-width: 110px;
 }
 .title-info {
   font-size: 18px;

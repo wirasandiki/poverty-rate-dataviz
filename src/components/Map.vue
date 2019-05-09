@@ -18,7 +18,7 @@
     <div class="legend-container">
       <Legend v-for="item in legend" :key="item.id" :from="item.from" :to="item.to" :color="item.color"/>
     </div>
-    <ChartDialog :show="isShowDialog" :title="provinceInfoTitle" :data="chartData" :selectedIndex="index" @close="isShowDialog = false"/>
+    <ChartDialog :show="isShowDialog" :title="`Provinsi ${provinceInfoTitle}`" :data="chartData" :selectedIndex="index" @close="isShowDialog = false"/>
   </div>
 </template>
 
@@ -132,7 +132,7 @@ export default {
       return '#FFF'
     },
     hoverProvince(province, value, data) {
-      this.provinceInfoTitle = `Provinsi ${province}`;
+      this.provinceInfoTitle = province;
       this.provinceInfoContent = value.toString();
       this.showProvinceInfo = true;
       this.chartData = data;
@@ -141,8 +141,8 @@ export default {
       this.showProvinceInfo = false;
     },
     mouseMove(mouseEventObj) {
-      this.provinceInfoYPos = mouseEventObj.layerY - 60;
-      this.provinceInfoXPos = mouseEventObj.layerX;
+      this.provinceInfoYPos = mouseEventObj.layerY - 90;
+      this.provinceInfoXPos = mouseEventObj.layerX + 10;
     },
     openDialog() {
       this.isShowDialog = true;

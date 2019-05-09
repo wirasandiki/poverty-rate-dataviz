@@ -30,6 +30,7 @@
     </div>
     <img src="./assets/human.png" class="human-image">
     <ChartDialog :show="isShowDialog" title="Indonesia" :data="indonesiaData" :selectedIndex="activeIndex" @close="isShowDialog = false"/>
+    <p class="source">Sumber: Badan Pusat Statistik (Maret 2019)</p>
   </div>
 </template>
 
@@ -159,7 +160,8 @@ h2 {
   left: 0;
 }
 .slider-container {
-  margin-top: 30px;
+  cursor: pointer;
+  margin-top: 20px;
   // margin-left: auto;
   // margin-right: auto;
   margin-left: 460px;
@@ -175,5 +177,11 @@ h2 {
 }
 .textbox-container {
   margin: 100px;
+}
+.source {
+  position: absolute;
+  color: white;
+  bottom: 0;
+  left: 10px;
 }
 </style>
