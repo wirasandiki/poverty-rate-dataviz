@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     sliderData: ['Maret 2012', 'September 2012', 'Maret 2013', 'September 2013', 'Maret 2014', 'September 2014', 'Maret 2015', 'September 2015', 'Maret 2016', 'September 2016', 'Maret 2017', 'September 2017', 'Maret 2018', 'September 2018'],
+    indonesiaData: [11.96, 11.66, 11.37, 11.47, 11.25, 10.96, 11.22, 11.13, 10.86, 10.7, 10.64, 10.12, 9.82, 9.66],
     masterData: [
       {
         name: 'aceh',

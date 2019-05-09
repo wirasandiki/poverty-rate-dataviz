@@ -30,11 +30,6 @@ export default {
       required: true
     }
   },
-  data() {
-    return {
-      // isHover: false
-    };
-  },
   computed: {
     topValue() {
       return this.yPos

@@ -15,6 +15,9 @@
       <img @click="reset" class="controller-icon" src="./../assets/reset.png">
     </div>
     <ProvinceInfo v-if="showProvinceInfo" :title="provinceInfoTitle" :content="provinceInfoContent" :xPos="provinceInfoXPos" :yPos="provinceInfoYPos" ref="provinceInfo"/>
+    <div class="legend-container">
+      <Legend v-for="item in legend" :key="item.id" :from="item.from" :to="item.to" :color="item.color"/>
+    </div>
     <ChartDialog :show="isShowDialog" :title="provinceInfoTitle" :data="chartData" :selectedIndex="index" @close="isShowDialog = false"/>
   </div>
 </template>
@@ -23,6 +26,7 @@
 import Province from './Province.vue'
 import ProvinceInfo from './ProvinceInfo.vue'
 import ChartDialog from './ChartDialog.vue'
+import Legend from './Legend.vue'
 import { mapState } from 'vuex'
 
 import svgPanZoom from 'svg-pan-zoom'
@@ -32,7 +36,8 @@ export default {
   components: {
     Province,
     ProvinceInfo,
-    ChartDialog
+    ChartDialog,
+    Legend
   },
   props: {
     index: {
@@ -51,7 +56,44 @@ export default {
       provinceInfoXPos: 0,
       provinceInfoYPos: 0,
       isShowDialog: false,
-      chartData: []
+      chartData: [],
+      legend: [
+        {
+          color: '#FFBF00',
+          from: 0,
+          to: 4
+        },
+        {
+          color: '#EB9900',
+          from: 4,
+          to: 8
+        },
+        {
+          color: '#D67600',
+          from: 8,
+          to: 12
+        },
+        {
+          color: '#C25700',
+          from: 12,
+          to: 16
+        },
+        {
+          color: '#A33900',
+          from: 16,
+          to: 20
+        },
+        {
+          color: '#992600',
+          from: 20,
+          to: 24
+        },
+        {
+          color: '#851400',
+          from: 24,
+          to: 28
+        },
+      ]
     };
   },
   computed: {
@@ -90,7 +132,7 @@ export default {
       return '#FFF'
     },
     hoverProvince(province, value, data) {
-      this.provinceInfoTitle = province;
+      this.provinceInfoTitle = `Provinsi ${province}`;
       this.provinceInfoContent = value.toString();
       this.showProvinceInfo = true;
       this.chartData = data;
@@ -125,7 +167,7 @@ svg:active {
 }
 .controller {
   position: absolute;
-  right: 5px;
+  right: 30px;
   bottom: 0;
 }
 .controller-icon {
@@ -140,7 +182,7 @@ svg:active {
 }
 .controller-bg {
   position: absolute;
-  right: 3px;
+  right: 28px;
   bottom: -2px;
 }
 .controller-icon-bg {
@@ -154,5 +196,10 @@ svg:active {
 }
 .controller-icon-bg:hover {
   cursor: pointer;
+}
+.legend-container {
+  position: absolute;
+  right: 70px;
+  top: 0;
 }
 </style>

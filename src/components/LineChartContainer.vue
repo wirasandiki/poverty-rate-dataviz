@@ -2,7 +2,7 @@
   <div class="text-xs-center">
     <div>
       <div class="chart">
-        <h2>Provinsi {{title}}</h2>
+        <h2>{{title}}</h2>
         <LineChart
           :labels="labels"
           :data="data"
@@ -28,7 +28,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$primary: #851400;
 .chart {
   margin: 40px !important;
 }

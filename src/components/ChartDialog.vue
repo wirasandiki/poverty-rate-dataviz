@@ -99,4 +99,7 @@ a {
   background-color: $primary !important;
   color: white !important;
 }
+.v-card {
+  background-color: #FFF6E5 !important;
+}
 </style>

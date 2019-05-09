@@ -8,6 +8,9 @@
         <h2>Menurut Provinsi Tahun 2012-2018</h2>
       </div>
     </div>
+    <div class="textbox-container">
+      <Textbox :content="timeSliderValue" :value="indonesiaData[activeIndex]" @click.native="isShowDialog = true"/>
+    </div>
     <div class="map-container">
       <Map :index="activeIndex"/>
     </div>
@@ -26,6 +29,7 @@
       </vue-slider>
     </div>
     <img src="./assets/human.png" class="human-image">
+    <ChartDialog :show="isShowDialog" title="Indonesia" :data="indonesiaData" :selectedIndex="activeIndex" @close="isShowDialog = false"/>
   </div>
 </template>
 
@@ -33,6 +37,8 @@
 import { mapState } from 'vuex'
 
 import Map from './components/Map.vue'
+import Textbox from './components/Textbox.vue'
+import ChartDialog from './components/ChartDialog.vue'
 import VueSlider from 'vue-slider-component'
 import 'vue-slider-component/theme/antd.css'
 
@@ -40,18 +46,21 @@ export default {
   name: 'App',
   components: {
     Map,
-    VueSlider
+    VueSlider,
+    Textbox,
+    ChartDialog
   },
   data() {
     return {
       activeIndex: 13,
       timeSliderValue: 'September 2018',
       railStyle: { borderRadius: '0' },
-      dotStyle: { backgroundColor: '#FFBF00' }
+      dotStyle: { backgroundColor: '#FFBF00' },
+      isShowDialog: false
     };
   },
   computed: {
-    ...mapState(['sliderData']),
+    ...mapState(['sliderData', 'indonesiaData']),
     markSlider() {
       const marks = {}
       for (const s of this.sliderData) {
@@ -163,5 +172,8 @@ h2 {
   z-index: -9;
   // opacity: 0.7;
   // filter: alpha(opacity=70);
+}
+.textbox-container {
+  margin: 100px;
 }
 </style>
