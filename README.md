@@ -1,5 +1,10 @@
 # indonesian-poverty-rate-dataviz
 
+Visualisasi data Persentase Penduduk Miskin Indonesia Menurut Provinsi Tahun 2012-2018. <br>
+Sumber: Badan Pusat Statistik (Maret 2019) <br><br>
+Demo: https://dikiardian.github.io/poverty-rate-dataviz/ <br>
+Recommendation: Access with desktop browser (1366 x 768 resolution).
+
 ## Project setup
 ```
 npm install
@@ -14,16 +19,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
