@@ -31,6 +31,30 @@
     <img src="./assets/human.png" class="human-image">
     <ChartDialog :show="isShowDialog" title="Indonesia" :data="indonesiaData" :selectedIndex="activeIndex" @close="isShowDialog = false"/>
     <p class="source">Sumber: Badan Pusat Statistik (Maret 2019)</p>
+    <v-dialog v-model="showTips" width="700">
+      <v-card>
+        <v-card-title class="headline">
+          <span primary-title>Rekomendasi</span>
+        </v-card-title>
+        <v-card-text class="recommendation-text">
+          Untuk pengalaman yang lebih baik, akses website ini dengan browser desktop dengan resolusi <b>(1366 x 768)</b>. Jika resolusi tidak sesuai, dapat melakukan <b>zoom in</b> atau <b>zoom out</b> browser hingga tampilan kurang lebih menjadi seperti berikut, kemudian reload halaman website (F5):
+        </v-card-text>
+        <img class="recommendation-image" src="sample.png" alt="sample" width="500">
+
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="#851400"
+            flat
+            @click="showTips = false"
+          >
+            OK
+          </v-btn>
+        </v-card-actions>
+        <v-divider></v-divider>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -57,7 +81,8 @@ export default {
       timeSliderValue: 'September 2018',
       railStyle: { borderRadius: '0' },
       dotStyle: { backgroundColor: '#FFBF00' },
-      isShowDialog: false
+      isShowDialog: false,
+      showTips: false
     };
   },
   computed: {
@@ -86,6 +111,9 @@ export default {
       }
       return marks
     }
+  },
+  mounted() {
+    this.showTips = true;
   },
   methods: {
     changeIndex(e) {
@@ -183,5 +211,21 @@ h2 {
   color: white;
   bottom: 0;
   left: 10px;
+}
+.v-card__title {
+  background-color: #851400 !important;
+  color: white !important;
+}
+.v-card {
+  background-color: #FFF6E5 !important;
+}
+.recommendation-text {
+  color: $primary;
+}
+.recommendation-image {
+  margin: auto;
+  display: block;
+  margin-bottom: 10px;
+  border: solid 1px $primary;
 }
 </style>
